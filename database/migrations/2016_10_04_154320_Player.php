@@ -27,7 +27,7 @@ class Player extends Migration
         Schema::create('career_stats', function(Blueprint $table){
             $table->increments('id');
             $table->string('player_id');
-            $table->json('total_stats');
+            $table->longText('total_stats');
 
         });
     }

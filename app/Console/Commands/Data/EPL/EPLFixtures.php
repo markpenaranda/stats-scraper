@@ -20,7 +20,7 @@ class EplFixtures extends Command
      * The console command description.
      *
      * @var string
-     
+     n
      */
     protected $description = 'Cron EPL Teams Roster';
 
