@@ -8,7 +8,7 @@
         "php": ">=5.6.4",
         "laravel/framework": "5.3.*",
         "weidner/goutte": "@dev",
-        "jonnyw/php-phantomjs": "4.3.2",
+        "jakoch/phantomjs-installer": "2.0.0",
         "yangqi/htmldom" : "dev-master",
         "doctrine/dbal": "^2.5"
     },
