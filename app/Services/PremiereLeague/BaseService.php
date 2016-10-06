@@ -34,6 +34,7 @@ class BaseService {
 
 	    $timeout = $this->timeout;
 	   	while ($response->getStatus() != 200) {
+	   		dump($url . " @" . $timeout);
 	   		$timeout += 5000;
 	   		$request->setTimeout($timeout);
 	   		
