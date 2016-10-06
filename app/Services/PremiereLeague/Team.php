@@ -102,7 +102,7 @@ class Team extends BaseService{
 			
 			$handler->advanceBar();
 
-			break;
+		
 
 		}
 
