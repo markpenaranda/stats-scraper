@@ -9,7 +9,7 @@
         "laravel/framework": "5.3.*",
         "weidner/goutte": "@dev",
         "jakoch/phantomjs-installer": "2.0.0",
-        "yangqi/htmldom" : "dev-master",
+        "jonnyw/php-phantomjs":"4.*",
         "doctrine/dbal": "^2.5"
     },
     "require-dev": {
@@ -47,8 +47,7 @@
         ],
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
-            "php artisan optimize",
-            "PhantomInstaller\\Installer::installPhantomJS"
+            "php artisan optimize"
         ]
     },
     "config": {

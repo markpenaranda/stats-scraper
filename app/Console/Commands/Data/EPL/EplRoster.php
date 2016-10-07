@@ -75,6 +75,7 @@ class EplRoster extends Command
                 $player->position = $item['position'];
                 $player->country = $item['country'];
                 $player->url = $item['url'];
+                $player->image_url = $item['image_url'];
                 $player->team_id = $team->id;
                 $player->save();
 
