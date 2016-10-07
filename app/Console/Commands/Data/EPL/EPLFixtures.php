@@ -34,6 +34,24 @@ class EplFixtures extends Command
         parent::__construct();
     }
 
+
+
+    public function createBar($count) 
+    {
+        $this->bar = $this->output->createProgressBar($count);
+    }
+
+    public function advanceBar()
+    {
+        $this->bar->advance();
+    }
+
+    public function finishBar()
+    {
+        $this->bar->finish();
+    }
+
+
     /**
      * Execute the console command.
      *
@@ -43,10 +61,11 @@ class EplFixtures extends Command
     {
         $fixture = new Fixture;
 
-        $fixtures = $fixture->all();
+        $fixtures = $fixture->all($this);
 
 
         foreach ($fixtures as $item) {
+            $this->info("\n Saving in DB");
             $match = Match::firstOrNew(['match_url' => $item['url']]);
             $match->schedule = $item['schedule'];
             $match->match_url = $item['schedule'];
