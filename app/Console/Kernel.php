@@ -17,6 +17,7 @@ class Kernel extends ConsoleKernel
         'App\Console\Commands\Data\EPL\EplTeams',
         'App\Console\Commands\Data\EPL\EplRoster',
         'App\Console\Commands\Data\EPL\EplFixtures',
+        'App\Console\Commands\Data\EPL\EplGameStats',
     ];
 
     /**
