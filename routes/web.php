@@ -20,3 +20,4 @@ Route::get('/players/{id}', 'PlayerController@show');
 
 
 Route::get('/{league}/matches', 'MatchController@index');
+Route::get('/matches/{id}', 'MatchController@matchStats');
