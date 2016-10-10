@@ -14,4 +14,10 @@ class PlayerMatchStats extends Model
     {
     	return json_decode($value);
     }
+
+    public function player() {
+    	return $this->belongsTo('App\Player');
+    }
+
+   
 }

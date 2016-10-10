@@ -16,4 +16,9 @@ class Match extends Model
     {
     	return $this->belongsToMany('App\Team', 'match_competitors', 'match_id', 'team_id');
     }
+
+    public function player_stats()
+    {
+    	return $this->hasMany('App\PlayerMatchStats');
+    }
 }
