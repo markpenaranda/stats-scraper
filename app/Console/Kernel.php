@@ -18,6 +18,10 @@ class Kernel extends ConsoleKernel
         'App\Console\Commands\Data\EPL\EplRoster',
         'App\Console\Commands\Data\EPL\EplFixtures',
         'App\Console\Commands\Data\EPL\EplGameStats',
+        'App\Console\Commands\Data\NBA\NbaTeams',
+        'App\Console\Commands\Data\NBA\NbaRoster',
+        'App\Console\Commands\Data\NBA\NbaMatches',
+        'App\Console\Commands\Data\NBA\NbaGameStats',
     ];
 
     /**

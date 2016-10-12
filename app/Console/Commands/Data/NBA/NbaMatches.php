@@ -1,20 +1,20 @@
 <?php
 
-namespace App\Console\Commands\Data\EPL;
+namespace App\Console\Commands\Data\NBA;
 
 use Illuminate\Console\Command;
-use App\Services\PremiereLeague\Fixture;
+use App\Services\ESPN\NBA\Match as NbaMatch;
 use App\Match;
 use App\Team;
 
-class EplFixtures extends Command
+class NbaMatches extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'epl:fixtures';
+    protected $signature = 'nba:games';
 
     /**
      * The console command description.
@@ -22,7 +22,7 @@ class EplFixtures extends Command
      * @var string
      n
      */
-    protected $description = 'Cron EPL Teams Roster';
+    protected $description = 'Cron NBA Games';
 
     /**
      * Create a new command instance.
@@ -59,24 +59,27 @@ class EplFixtures extends Command
      */
     public function handle()
     {
-        $fixture = new Fixture;
+        $fixture = new NbaMatch;
 
-        $fixtures = $fixture->all($this);
+        $fixtures = $fixture->all(date("Y-m-d"), $this);
 
 
         foreach ($fixtures as $item) {
             $this->info("\n Saving in DB");
             $match = Match::firstOrNew(['match_url' => $item['url']]);
             $match->schedule = $item['schedule'];
-            $match->match_url = $item['match_url'];
+            $match->match_url = $item['url'];
+            $match->league = "nba";
             $match->save();
 
             foreach($item['teams'] as $remarks => $value) {
-                $team = Team::where('url', $value['url'])->first();
+                $team = Team::where('name', $value)->where('league', 'nba')->first();
 
                 $match->teams()->attach($team, ['remarks' => $remarks   ]);
             }
         }
+
+        $this->bar->finish();
 
     }
 }
