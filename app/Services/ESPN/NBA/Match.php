@@ -25,7 +25,7 @@ class Match extends BaseService{
 			 $handler->createBar(count($games));
 
 			 foreach ($games as $game) {
-			 	 $startDate = explode("T", $game['competitions'][0]['startDate']);
+			 	 $startDate = $game['competitions'][0]['startDate'];
 			 	 $gameSchedule = strtotime($startDate) * 1000;
 
 			 	 $competitors = $game['competitions'][0]['competitors'];
