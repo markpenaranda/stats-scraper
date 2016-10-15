@@ -27,7 +27,7 @@ class TeamController extends Controller
 
     }
 
-    public function showRoster(Request $request, $league, $id) 
+    public function showRoster(Request $request, $id) 
     {
     	$team = Team::find($id);
     	$item = [
