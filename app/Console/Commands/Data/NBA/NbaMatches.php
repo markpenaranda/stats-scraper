@@ -59,6 +59,7 @@ class NbaMatches extends Command
      */
     public function handle()
     {
+       
         $fixture = new NbaMatch;
 
         $fixtures = $fixture->all(date("Y-m-d"), $this);

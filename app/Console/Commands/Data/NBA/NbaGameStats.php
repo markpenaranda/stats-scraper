@@ -45,11 +45,11 @@ class NbaGameStats extends Command
     public function handle()
     {
     	$nbaMatch = new DataMatch();
+ 
         $startDate = strtotime(date("Y-m-d")) * 1000;
         $endDate = strtotime(date("Y-m-d") . " +1 days") * 1000;
 
-        // $matches = Match::where('schedule', '>', $startDate)->where('schedule', '<',  $endDate)->get();
-        $matches = Match::where('league', 'nba')->get();
+        $matches = Match::where('schedule', '>', $startDate)->where('schedule', '<',  $endDate)->where('league', 'nba')->get();
 
         foreach ($matches as $match) {
 
@@ -59,9 +59,7 @@ class NbaGameStats extends Command
             foreach ($stats['players'] as $player) {
                 $dbPlayer = Player::where('url', 'like', $player['player_url'] . "%")->first();
                 $playerMatchStats = PlayerMatchStats::firstOrNew(['match_id' => $match->id, 'player_id' => $dbPlayer->id]);
-
-          
-          			$playerMatchStats->match_id = $match->id;
+                    $playerMatchStats->match_id = $match->id;
           			$playerMatchStats->player_id = $dbPlayer->id;
           			$playerMatchStats->stats = json_encode($player);
           			$playerMatchStats->save();

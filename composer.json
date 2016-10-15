@@ -47,7 +47,9 @@
         ],
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
-            "php artisan optimize"
+            "php artisan optimize",
+            "PhantomInstaller\\Installer::installPhantomJS"
+
         ]
     },
     "config": {

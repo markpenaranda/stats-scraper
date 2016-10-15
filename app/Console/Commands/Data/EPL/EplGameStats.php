@@ -49,7 +49,7 @@ class EplGameStats extends Command
         $startDate = strtotime(date("Y-m-d")) * 1000;
         $endDate = strtotime(date("Y-m-d") . " +1 days") * 1000;
 
-        $matches = Match::where('schedule', '>', $startDate)->where('schedule', '<',  $endDate)->get();
+        $matches = Match::where('schedule', '>', $startDate)->where('schedule', '<',  $endDate)->where('league', 'epl')->get();
 
         foreach ($matches as $match) {
           	foreach ($matches->teams as $team) {

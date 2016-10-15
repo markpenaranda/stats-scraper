@@ -12,10 +12,24 @@ class MatchController extends Controller
 {
     public function index(Request $request, $league)
     {
-    	$matches = Match::where('league', $league)->get();
+        if ($request->has('date')) {
+            # code...
+            $startDate = strtotime($request->input('date')) * 1000;
+            $endDate = strtotime($request->input('date') . " +1 days") * 1000;
+    	$matches =Match::where('schedule', '>', $startDate)->where('schedule', '<',  $endDate)->where('league', $league)->get();
+        }
+        else {
+            $matches = Match::where('league', $league)->get();
+        }
 
     	return response()->json($matches);
     }
+
+    public function getNextBatch()
+    {
+
+    }
+
 
     public function matchStats(Request $request, $id)
     {
