@@ -10,7 +10,7 @@ class TeamController extends Controller
 {
     
 
-    public function index(Request $request, $league) 
+    public function index(Request $request) 
     {
         $league = $request->input('league');
     	$teams = Team::where('league', $league)->get();

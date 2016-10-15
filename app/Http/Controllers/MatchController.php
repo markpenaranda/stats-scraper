@@ -10,7 +10,7 @@ use App\PlayerMatchStats;
 
 class MatchController extends Controller
 {
-    public function index(Request $request, $league)
+    public function index(Request $request)
     {
         $league = $request->input('league');
         if ($request->has('date')) {
