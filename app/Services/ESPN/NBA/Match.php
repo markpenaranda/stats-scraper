@@ -31,14 +31,11 @@ class Match extends BaseService{
 			 	 $competitors = $game['competitions'][0]['competitors'];
 			 	 $home_team = $competitors[0]['team'];
 			 	 $away_team = $competitors[1]['team'];
-
+			 	 dump('all teams complete ' . $game['uid']);
 			 	 $time = "18:00:00";
 			 	 if($game['status']['type']['shortDetail'] != "Final"){
 			 	  	$sched_detail =  explode(" - ", $game['status']['type']['shortDetail']);
-				 
-					$t = explode(" ",$sched_detail[1]);
-				 	$time = $t[0] . ":00";
-			 	 }
+				 }
 			 	 $status = ($game['status']['type']['completed']) ? 'Final' : NULL;
 			 	 $teams = [
 			 	 	'home' => $home_team['location'] . " " . $home_team['name'],
@@ -77,6 +74,7 @@ class Match extends BaseService{
 					$status = ($game_stats_json['content']['statusState'] == "post") ? "Final" : NULL;
 			$boxscore = $game_stats_json['gamepackageJSON']['boxscore'];
 		//	dump($game_stats_json);
+			if(!$boxscore['players']) return [];
 			$teams = $boxscore['players'];
 			 $players_out = [];
 			
