@@ -11,13 +11,13 @@
 |
 */
 
-Route::get('/{league}/teams', 'TeamController@index');
-Route::get('/{league}/teams/{id}', 'TeamController@show');
+Route::get('/teams', 'TeamController@index');
+Route::get('/teams/{id}', 'TeamController@show');
 
-Route::get('/{league}/teams/{id}/roster', 'TeamController@showRoster');
+Route::get('/teams/{id}/roster', 'TeamController@showRoster');
 Route::get('/players/{id}', 'PlayerController@show');
 
 
 
-Route::get('/{league}/matches', 'MatchController@index');
+Route::get('/matches', 'MatchController@index');
 Route::get('/matches/{id}', 'MatchController@matchStats');

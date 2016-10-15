@@ -12,6 +12,7 @@ class MatchController extends Controller
 {
     public function index(Request $request, $league)
     {
+        $league = $request->input('league');
         if ($request->has('date')) {
             # code...
             $startDate = strtotime($request->input('date')) * 1000;
