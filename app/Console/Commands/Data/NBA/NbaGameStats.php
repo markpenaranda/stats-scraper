@@ -46,8 +46,7 @@ class NbaGameStats extends Command
     {
     	$nbaMatch = new DataMatch();
  
-        // $startDate = strtotime(date("Y-m-d")) * 1000;
-        $startDate = 1475251200000;
+        $startDate = strtotime(date("Y-m-d")) * 1000;
         $endDate = strtotime(date("Y-m-d") . " +1 days") * 1000;
 
         $matches = Match::where('schedule', '>', $startDate)->where('schedule', '<',  $endDate)->where('league', 'nba')->get();
