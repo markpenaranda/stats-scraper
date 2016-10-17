@@ -78,11 +78,14 @@ class NbaMatches extends Command
                 $match->status = $item['status'];
                 $match->save();
 
-                foreach($item['teams'] as $remarks => $value) {
-                    $team = Team::where('name', $value)->where('league', 'nba')->first();
+                if(count($match->teams) == 0) {
+                    foreach($item['teams'] as $remarks => $value) {
+                        $team = Team::where('name', $value)->where('league', 'nba')->first();
 
-                    $match->teams()->attach($team, ['remarks' => $remarks   ]);
+                        $match->teams()->attach($team, ['remarks' => $remarks   ]);
+                    }                    
                 }
+
             }
 
             $this->bar->finish();
