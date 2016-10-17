@@ -63,7 +63,8 @@ class NbaMatches extends Command
        
         $fixture = new NbaMatch;
 
-        $dateRange = $this->createDateRangeArray("2016-10-01", "2016-10-19");
+
+        $dateRange = $this->createDateRangeArray(date("Y-m-d", strtotime('-1 day')), date("Y-m-d",strtotime('+2 day')));
 
         foreach ($dateRange as $date) {
             $this->info("\n" . $date . "\n");

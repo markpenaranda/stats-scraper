@@ -34,6 +34,8 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+        $schedule->command('nba:rosters')->daily();
+        $schedule->command('nba:games')->daily();
         $schedule->command('nba:game_stats')->everyMinute();
     }
 
