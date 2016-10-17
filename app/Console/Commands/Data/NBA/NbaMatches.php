@@ -75,6 +75,7 @@ class NbaMatches extends Command
                 $match->schedule = $item['schedule'];
                 $match->match_url = $item['url'];
                 $match->league = "nba";
+                $match->status = $item['status'];
                 $match->save();
 
                 foreach($item['teams'] as $remarks => $value) {

@@ -56,6 +56,8 @@ class NbaGameStats extends Command
           	$stats = $nbaMatch->matchStats($match->match_url);
             dump($stats);
             $bar = $this->output->createProgressBar(count($stats['players']));
+            $match->status = $stats['status'];
+
             foreach ($stats['players'] as $player) {
                 $dbPlayer = Player::where('url', 'like', $player['player_url'] . "%")->first();
                 if($dbPlayer) {
@@ -68,6 +70,8 @@ class NbaGameStats extends Command
                     
                 }
             }
+
+            $match->save();
             $bar->finish();
           		
           	

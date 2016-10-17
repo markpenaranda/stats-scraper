@@ -36,7 +36,7 @@ class Match extends BaseService{
 			 	 if($game['status']['type']['shortDetail'] != "Final"){
 			 	  	$sched_detail =  explode(" - ", $game['status']['type']['shortDetail']);
 				 }
-			 	 $status = ($game['status']['type']['completed']) ? 'Final' : NULL;
+			 	 $status = ($game['status']['type']['completed']) ? 'Final' : 'Upcoming';
 			 	 $teams = [
 			 	 	'home' => $home_team['location'] . " " . $home_team['name'],
 			 	 	'away' => $away_team['location'] . " " . $away_team['name']
@@ -69,7 +69,7 @@ class Match extends BaseService{
 	{
 		$game_stats_json = $this->get($url);
 
-		$status = ($game_stats_json['content']['statusState'] == "post") ? "Final" : NULL;
+		$status = ($game_stats_json['content']['statusState'] == "post") ? "Final" : 'Upcoming';
 
 					$status = ($game_stats_json['content']['statusState'] == "post") ? "Final" : NULL;
 			$boxscore = $game_stats_json['gamepackageJSON']['boxscore'];
