@@ -17,10 +17,10 @@ class MatchController extends Controller
             # code...
             $startDate = strtotime($request->input('date')) * 1000;
             $endDate = strtotime($request->input('date') . " +1 days") * 1000;
-    	$matches =Match::where('schedule', '>', $startDate)->where('schedule', '<',  $endDate)->where('league', $league)->get();
+    	$matches =Match::where('schedule', '>', $startDate)->where('schedule', '<',  $endDate)->where('league', $league)->paginate(15);
         }
         else {
-            $matches = Match::where('league', $league)->orderBy('id', 'desc')->get();
+            $matches = Match::where('league', $league)->orderBy('id', 'desc')->paginate(15);
         }
 
     	return response()->json($matches);
