@@ -20,7 +20,7 @@ class MatchController extends Controller
     	$matches =Match::where('schedule', '>', $startDate)->where('schedule', '<',  $endDate)->where('league', $league)->get();
         }
         else {
-            $matches = Match::where('league', $league)->get();
+            $matches = Match::where('league', $league)->orderBy('id', 'desc')->get();
         }
 
     	return response()->json($matches);
