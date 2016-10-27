@@ -76,7 +76,7 @@ class Match extends BaseService{
 			return array(
             'status' => $status,
             'players' => []
-        )};
+        ); }
 			$teams = $boxscore['players'];
 			 $players_out = [];
 			
