@@ -72,8 +72,8 @@ class Match extends BaseService{
 
 		$boxscore = $game_stats_json['gamepackageJSON']['boxscore'];
 
-		
-			if($boxscore && array_key_exists('players', $boxscore) && in_array('players', $boxscore)){
+
+		if(!$boxscore && !array_key_exists('players', $boxscore) && !in_array('players', $boxscore)){
 				return array(
             		'status' => $status,
             		'players' => []
