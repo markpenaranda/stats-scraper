@@ -27,7 +27,6 @@ class Match extends BaseService{
 			 foreach ($games as $game) {
 			 	 $startDate = $game['competitions'][0]['startDate'];
 			 	 $gameSchedule = strtotime($startDate) * 1000;
-			 	 $gameDateUTC = date('Y-m-d H:i:s', strtotime($startDate));
 
 			 	 $competitors = $game['competitions'][0]['competitors'];
 			 	 $home_team = $competitors[0]['team'];
@@ -50,8 +49,7 @@ class Match extends BaseService{
 			 	 	'teams' => $teams,
 			 	 	'status' => $status,
 			 	 	'url' => "http://cdn.espn.go.com/core/nba/boxscore?gameId=". $game_id ."&xhr=1&render=false&userab=0",
-			 	 	'time' => $time,
-			 	 	'schedule' => $gameSchedule
+			 	 	'time' => $time
 			 	 ];
 
 			 	 array_push($schedules, $schedule);
