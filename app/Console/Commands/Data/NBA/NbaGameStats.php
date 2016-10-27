@@ -61,6 +61,22 @@ class NbaGameStats extends Command
             foreach ($stats['players'] as $player) {
                 $dbPlayer = Player::where('url', 'like', $player['player_url'] . "%")->first();
                 if($dbPlayer) {
+
+
+                    $doubleDigitCounter = 0;
+
+                    foreach($player as $stat => $statValue) {
+                        if(in_array($stat, ['pts', 'reb', 'ast', 'stl', 'blk'])) {
+                            if($statValue >= 10) {
+                                ++$doubleDigitCounter;
+                            } 
+                        }
+                    }
+
+                    $player['double_double'] = ($doubleDigitCounter == 2) ? 1 : 0;
+
+                    $player['thriple_double'] = ($doubleDigitCounter > 2) ? 1 : 0;
+
                     $playerMatchStats = PlayerMatchStats::firstOrNew(['match_id' => $match->id, 'player_id' => $dbPlayer->id]);
                         $playerMatchStats->match_id = $match->id;
               			$playerMatchStats->player_id = $dbPlayer->id;

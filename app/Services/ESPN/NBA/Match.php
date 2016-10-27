@@ -51,8 +51,7 @@ class Match extends BaseService{
 			 	 	'status' => $status,
 			 	 	'url' => "http://cdn.espn.go.com/core/nba/boxscore?gameId=". $game_id ."&xhr=1&render=false&userab=0",
 			 	 	'time' => $time,
-			 	 	'schedule' => $gameSchedule,
-			 	 	'game_starts_at' => $gameDateUTC;
+			 	 	'schedule' => $gameSchedule
 			 	 ];
 
 			 	 array_push($schedules, $schedule);

@@ -12,6 +12,7 @@ class PlayerMatchStats extends Model
     
     public function getStatsAttribute($value) 
     {
+    	
     	return json_decode($value);
     }
 
