@@ -71,12 +71,15 @@ class Match extends BaseService{
 		$status = ($game_stats_json['content']['statusState'] == "post") ? "Final" : 'Upcoming';
 
 		$boxscore = $game_stats_json['gamepackageJSON']['boxscore'];
-		//	dump($game_stats_json);
-			if($boxscore && in_array('players', $boxscore)){
-			return array(
-            'status' => $status,
-            'players' => []
-        ); }
+
+		
+			if($boxscore && array_key_exists('players', $boxscore) && in_array('players', $boxscore)){
+				return array(
+            		'status' => $status,
+            		'players' => []
+        		); 
+
+        }
 			$teams = $boxscore['players'];
 			 $players_out = [];
 			
