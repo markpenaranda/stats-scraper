@@ -75,7 +75,7 @@ class NbaGameStats extends Command
 
                     $player['double_double'] = ($doubleDigitCounter == 2) ? 1 : 0;
 
-                    $player['thriple_double'] = ($doubleDigitCounter > 2) ? 1 : 0;
+                    $player['triple_double'] = ($doubleDigitCounter > 2) ? 1 : 0;
 
                     $playerMatchStats = PlayerMatchStats::firstOrNew(['match_id' => $match->id, 'player_id' => $dbPlayer->id]);
                         $playerMatchStats->match_id = $match->id;
