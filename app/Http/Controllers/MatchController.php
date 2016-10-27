@@ -22,9 +22,9 @@ class MatchController extends Controller
 
 
             $startTime = $request->input('startTime');
-            $endTime = $request->input('startTime');
+            $endTime = $request->input('endTime');
 
-            $matches =Match::where('schedule', '>', $startTime)->where('schedule', '<',  $endTime)->where('league', $league)->get();
+            $matches =Match::where('schedule', '>=', $startTime)->where('schedule', '<=',  $endTime)->where('league', $league)->get();
 
         }
         else {
