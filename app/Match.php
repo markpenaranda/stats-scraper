@@ -28,6 +28,15 @@ class Match extends Model
 
     public function getCompetitorsAttribute()
     {
-    	return $this->teams;
+    	$output = [];
+
+        foreach ($this->teams as $team) {
+            $item = $team;
+            $item['remarks'] = $team->pivot->remarks;
+            $item['score'] = $team->pivot->score;
+            array_push($output, $item);
+        }
+
+        return $output;
     }
 }
