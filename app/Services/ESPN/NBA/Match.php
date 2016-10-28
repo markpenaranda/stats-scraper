@@ -72,9 +72,7 @@ class Match extends BaseService{
 
 		$boxscore = $game_stats_json['gamepackageJSON']['boxscore'];
 
-		$matchStats = $game_stats_json['gamepackageJSON']['header']['competitions']['competitors'];
 
-		$teams_stats = [];
 
 
 		if(!isset($boxscore['players'])){
@@ -89,6 +87,9 @@ class Match extends BaseService{
         /*==================================
         =            Team Score            =
         ==================================*/
+		$teams_stats = [];
+		
+		$matchStats = $game_stats_json['gamepackageJSON']['header']['competitions'][0]['competitors'];
         
         foreach ($matchStats as $team) {
         	
