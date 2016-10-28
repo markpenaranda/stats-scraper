@@ -18,7 +18,7 @@ class Match extends Model
 
     public function teams() 
     {
-    	return $this->belongsToMany('App\Team', 'match_competitors', 'match_id', 'team_id')->withPivot('remarks');
+    	return $this->belongsToMany('App\Team', 'match_competitors', 'match_id', 'team_id')->withPivot('remarks', 'score');
     }
 
     public function player_stats()

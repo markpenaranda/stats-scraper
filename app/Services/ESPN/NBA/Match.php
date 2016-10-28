@@ -72,18 +72,51 @@ class Match extends BaseService{
 
 		$boxscore = $game_stats_json['gamepackageJSON']['boxscore'];
 
+		$matchStats = $game_stats_json['gamepackageJSON']['header']['competitions'];
+
+		$teams_stats = [];
+
 
 		if(!isset($boxscore['players'])){
 				return array(
             		'status' => $status,
-            		'players' => []
+            		'players' => [],
+            		'teams' => []
         		); 
 
         }
-			$teams = $boxscore['players'];
-			 $players_out = [];
+
+        /*==================================
+        =            Team Score            =
+        ==================================*/
+        
+        foreach ($matchStats as $team) {
+        	$team_url = $team['teams']['links'][0]['href'];
+        	$score = $team['score'];
+
+        	array_push($teams_stats, array('url' => $team_url, 'score' => $team['score']));
+
+        }
+        
+
+
+
+
+
+
+
+
+        /*=======================================
+        =            Player Boxscore            =
+        =======================================*/
+        
+        
+        
+
+		$teams = $boxscore['players'];
+		$players_out = [];
 			
-			foreach ($teams as $team) {
+		foreach ($teams as $team) {
 				dump('here');
 				$players = $team['statistics'][0]['athletes'];
 				//dump('here at stats');
@@ -137,7 +170,8 @@ class Match extends BaseService{
 
 			  $game = array(
             'status' => $status,
-            'players' => $players_out
+            'players' => $players_out,
+            'teams' => $teams_stats
         );
 	//dump($game);
         return $game;

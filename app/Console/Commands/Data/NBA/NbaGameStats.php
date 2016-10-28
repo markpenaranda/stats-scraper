@@ -58,6 +58,12 @@ class NbaGameStats extends Command
             $bar = $this->output->createProgressBar(count($stats['players']));
             $match->status = $stats['status'];
 
+            foreach ($stats['teams'] as $teamStats) {
+                $team = Team::where('url', $teamStats['url'])->first();
+
+                $match->teams()->updateExistingPivot($team->id, ['score' => $teamStats['score']]);
+            }
+
             foreach ($stats['players'] as $player) {
                 $dbPlayer = Player::where('url', 'like', $player['player_url'] . "%")->first();
                 if($dbPlayer) {
