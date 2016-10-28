@@ -32,7 +32,11 @@ class Match extends Model
 
 
         foreach ($this->teams as $team) {
-            $item = $team;
+            $item['id'] = $team->id;
+            $item['name'] = $team->name;
+            $item['abbreviation'] = $team->abbreviation;
+            $item['image_url'] = $team->image_url;
+            $item['league'] = $team->league;
             $item['remarks'] = $team->pivot->remarks;
             $item['score'] = $team->pivot->score;
             array_push($output, $item);
