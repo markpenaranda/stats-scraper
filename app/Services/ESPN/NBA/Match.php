@@ -72,7 +72,7 @@ class Match extends BaseService{
 
 		$boxscore = $game_stats_json['gamepackageJSON']['boxscore'];
 
-		$matchStats = $game_stats_json['gamepackageJSON']['header']['competitions'];
+		$matchStats = $game_stats_json['gamepackageJSON']['header']['competitions']['competitors'];
 
 		$teams_stats = [];
 
@@ -91,7 +91,7 @@ class Match extends BaseService{
         ==================================*/
         
         foreach ($matchStats as $team) {
-        
+        	
         	$team_url = $team['team']['links'][0]['href'];
         	$score = $team['score'];
 
