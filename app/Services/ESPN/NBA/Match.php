@@ -91,6 +91,7 @@ class Match extends BaseService{
         ==================================*/
         
         foreach ($matchStats as $team) {
+        	dump($team);
         	$team_url = $team['links'][0]['href'];
         	$score = $team['score'];
 
