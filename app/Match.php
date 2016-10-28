@@ -30,6 +30,8 @@ class Match extends Model
     {
     	$output = [];
 
+        return [];
+
         foreach ($this->teams as $team) {
             $item = $team;
             $item['remarks'] = $team->pivot->remarks;
