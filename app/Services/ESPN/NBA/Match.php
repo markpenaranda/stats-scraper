@@ -13,7 +13,7 @@ class Match extends BaseService{
 
 
 			$url  = "http://cdn.espn.go.com/core/nba/schedule/_/date/" . $date . "?xhr=1&render=true&userab=0";
-
+			dump($url);
 
 			 $nba_sched_json = $this->get($url);
 
