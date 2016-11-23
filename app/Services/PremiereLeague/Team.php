@@ -76,7 +76,7 @@ class Team extends BaseService{
 
 			$playerStatsCrawler = $this->render($statsUrl);
 			
-			$item['image_url'] = $player->find('.statCardImg', 0)->src;
+			$item['image_url'] = "https:" . $player->find('.statCardImg', 0)->src;
 
 			$stats = [
 				'goal' => ($playerStatsCrawler->find('span[data-stat=goals]', 0)) ? trim($playerStatsCrawler->find('span[data-stat=goals]', 0)->plaintext) : 0,
