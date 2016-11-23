@@ -66,7 +66,7 @@ class EplFixtures extends Command
 
         foreach ($fixtures as $item) {
             $this->info("\n Saving in DB");
-            $match = Match::firstOrNew(['match_url' => $item['url']]);
+            $match = Match::firstOrNew(['match_url' => $item['match_url']]);
             $match->schedule = $item['schedule'];
             $match->match_url = $item['match_url'];
             $match->league = "epl";
