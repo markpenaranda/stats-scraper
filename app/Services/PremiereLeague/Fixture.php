@@ -26,7 +26,7 @@ class Fixture extends BaseService{
 
 				
 				$match = [
-					'url' => $matchUrl,
+					'match_url' => $matchUrl,
 					'schedule' => $matchContainer->{'data-comp-match-item-ko'},
 					'teams' => [
 						'home' => [

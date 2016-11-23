@@ -69,12 +69,20 @@ class EplFixtures extends Command
             $match = Match::firstOrNew(['match_url' => $item['url']]);
             $match->schedule = $item['schedule'];
             $match->match_url = $item['match_url'];
+            $match->league = "epl";
+            $match->status = "Upcoming";
             $match->save();
 
             foreach($item['teams'] as $remarks => $value) {
+                $team_not_exist = true;
                 $team = Team::where('url', $value['url'])->first();
 
-                $match->teams()->attach($team, ['remarks' => $remarks   ]);
+                foreach ($match->teams as $added_team) {
+                    if($added_team == $team) { $team_not_exist = false; }
+                }
+                if($team_not_exist) {
+                    $match->teams()->attach($team, ['remarks' => $remarks   ]);
+                }
             }
         }
 
