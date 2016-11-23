@@ -32,7 +32,7 @@ class Team extends BaseService{
 	public function getRoster($team, $handler)
 	{
 
-		$crawler = $this->render($team->roster_url);
+		$crawler = $this->render($team->roster_url, true);
 
 		$roster = [];
 
@@ -75,7 +75,8 @@ class Team extends BaseService{
 			$statsUrl = str_replace($arrayUrl[5], $urlEncodedName, $statsUrl);
 
 			$playerStatsCrawler = $this->render($statsUrl);
-			$item['image_url'] = "https:" . $playerStatsCrawler->find('section.playerHero', 0)->find('img[data-script=pl_player-image]', 0)->src;
+			
+			$item['image_url'] = $player->find('.statCardImg', 0)->src;
 
 			$stats = [
 				'goal' => ($playerStatsCrawler->find('span[data-stat=goals]', 0)) ? trim($playerStatsCrawler->find('span[data-stat=goals]', 0)->plaintext) : 0,
