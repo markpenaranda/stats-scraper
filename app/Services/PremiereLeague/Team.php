@@ -6,6 +6,7 @@ use App\Team as DBTeam;
 
 class Team extends BaseService{
 
+	public $current_season = "54";
 	public function all() 
 	{
 		$clubList = [];
@@ -74,11 +75,12 @@ class Team extends BaseService{
 
 			$statsUrl = str_replace($arrayUrl[5], $urlEncodedName, $statsUrl);
 
-			$playerStatsCrawler = $this->render($statsUrl);
+			$playerStatsCrawler = $this->render($statsUrl . "?se=" . $this->current_season);
 			
 			$item['image_url'] = "https:" . $player->find('.statCardImg', 0)->src;
 
 			$stats = [
+				'appearances' => ($playerStatsCrawler->find('span[data-stat=appearances]', 0)) ? trim($playerStatsCrawler->find('span[data-stat=appearances]', 0)->plaintext) : 0,
 				'goal' => ($playerStatsCrawler->find('span[data-stat=goals]', 0)) ? trim($playerStatsCrawler->find('span[data-stat=goals]', 0)->plaintext) : 0,
 				'assist' => ($playerStatsCrawler->find('span[data-stat=goal_assist]', 0)) ? trim($playerStatsCrawler->find('span[data-stat=goal_assist]', 0)->plaintext) : 0,
 				'shot' => ($playerStatsCrawler->find('span[data-stat=total_scoring_att]', 0)) ? trim($playerStatsCrawler->find('span[data-stat=total_scoring_att]', 0)->plaintext) : 0,
