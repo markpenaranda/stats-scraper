@@ -65,6 +65,7 @@ class EplFixtures extends Command
 
 
         foreach ($fixtures as $item) {
+            dump($item);
             $this->info("\n Saving in DB");
             $match = Match::firstOrNew(['match_url' => $item['match_url']]);
             $match->schedule = $item['schedule'];
