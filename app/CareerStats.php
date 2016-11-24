@@ -8,7 +8,9 @@ class CareerStats extends Model
 {
     protected $table = "career_stats";
 
-    protected $visible = ['total_stats', 'player_id'];
+    protected $fillable = ['player_id'];
+
+    protected $visible = ['total_stats'];
     public function getTotalStatsAttribute($value) 
     {
     	return json_decode($value);
