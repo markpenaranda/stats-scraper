@@ -39,7 +39,9 @@ class Fixture extends BaseService{
 				];
 
 				array_push($matches, $match);
+
 				$handler->advanceBar();
+				break;
 			}
 		}
 
