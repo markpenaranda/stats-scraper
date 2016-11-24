@@ -81,10 +81,13 @@ class EplRoster extends Command
 
                 $career_stats = json_encode($item['career_stats']);
 
-                $stats = new CareerStats();
+                $stats = CareerStats::firstOrNew([
+                                                'player_id' => $player->id
+                                            ]);
+                $stats->player_id = $player->id;
                 $stats->total_stats = $career_stats;
-
-                $player->career_stats()->save($stats);
+                $stats->save();
+                // $player->career_stats()->save($stats);
             }
 
         }
