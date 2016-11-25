@@ -10,9 +10,9 @@ class Player extends Model
 
     protected $fillable = ['name','jersey_number','country','url'];
 
-    protected $visible = ['id','name','jersey_number','country', 'image_url', 'position', 'country', 'career_stats'];
+    protected $visible = ['id','name','jersey_number','country', 'image_url', 'position', 'country', 'season_stats'];
 
-    public function career_stats() 
+    public function season_stats() 
     {
     	return $this->hasOne('App\CareerStats');
     }

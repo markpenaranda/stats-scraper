@@ -79,7 +79,7 @@ class EplRoster extends Command
                 $player->team_id = $team->id;
                 $player->save();
 
-                $career_stats = json_encode($item['career_stats']);
+                $career_stats = json_encode($item['season_stats']);
 
                 $stats = CareerStats::firstOrNew([
                                                 'player_id' => $player->id
