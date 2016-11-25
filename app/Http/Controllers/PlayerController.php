@@ -19,7 +19,7 @@ class PlayerController extends Controller
     		'jersey_number' => $player->jersey_number,
     		'country' => $player->country,
     		'position' => $player->position,
-    		'career_stats' => $player->career_stats
+    		'season_stats' => $player->season_stats
     	];
 
     	return response()->json($item);
