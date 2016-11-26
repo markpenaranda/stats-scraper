@@ -64,7 +64,7 @@ class EplGameStats extends Command
           				$gameStats = array();
 
           				foreach ($currentStats as $key => $value) {
-          					$gameStats[$key] = $stats[$key] - $currentStats[$key];
+          					$gameStats[$key] = (int) $stats[$key] - (int) $currentStats[$key];
           				}
           			}
 
