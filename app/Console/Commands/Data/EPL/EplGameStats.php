@@ -60,11 +60,14 @@ class EplGameStats extends Command
           			$stats = $eplPlayer->careerStats($player->url, $player->position);
 
           			if($player->season_stats) {
-          				$currentStats = json_decode($player->season_stats->total_stats);
+                  // dd($player->season_stats->total_stats);
+          				$currentStats = $player->season_stats->total_stats;
+
+
           				$gameStats = array();
 
           				foreach ($currentStats as $key => $value) {
-          					$gameStats[$key] = (int) $stats[$key] - (int) $currentStats[$key];
+          					$gameStats[$key] = (int) $stats[$key] - (int) $value;
           				}
           			}
 
