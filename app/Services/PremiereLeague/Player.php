@@ -5,6 +5,8 @@ namespace App\Services\PremiereLeague;
 use App\Team as DBTeam;
 
 class Player extends BaseService {
+	
+	public $current_season = "54";
 
 	public function careerStats($playerUrl, $position) 
 	{
