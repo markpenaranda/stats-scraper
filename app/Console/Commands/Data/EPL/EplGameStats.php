@@ -60,6 +60,7 @@ class EplGameStats extends Command
           			$stats = $eplPlayer->careerStats($player->url, $player->position);
 
           			if($player->season_stats) {
+                  dump("PLayer: ". $player->id);
                   // dd($player->season_stats->total_stats);
           				$currentStats = $player->season_stats->total_stats;
 
