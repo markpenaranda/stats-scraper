@@ -57,7 +57,7 @@ class EplGameStats extends Command
           	foreach ($match->teams as $team) {
           		foreach ($team->roster as $player) {
           			$playerMatchStats = PlayerMatchStats::firstOrNew(['match_id' => $match->id, 'player_id' => $player->id]);
-          			$stats = $eplPlayer->careerStats($player->url);
+          			$stats = $eplPlayer->careerStats($player->url, $player->position);
 
           			if($player->career_stats) {
           				$currentStats = json_decode($player->career_stats->total_stats);
