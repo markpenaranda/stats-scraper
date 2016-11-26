@@ -54,7 +54,7 @@ class EplGameStats extends Command
         foreach ($matches as $match) {
             $match->status = "Live";
             $match->save();
-          	foreach ($matches->teams as $team) {
+          	foreach ($match->teams as $team) {
           		foreach ($team->roster as $player) {
           			$playerMatchStats = PlayerMatchStats::firstOrNew(['match_id' => $match->id, 'player_id' => $player->id]);
           			$stats = $eplPlayer->carerStats($player->url);
