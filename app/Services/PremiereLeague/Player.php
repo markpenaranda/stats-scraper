@@ -19,8 +19,8 @@ class Player extends BaseService {
 			$urlEncodedName = urlencode($arrayUrl[5]);
 
 			$statsUrl = str_replace($arrayUrl[5], $urlEncodedName, $statsUrl);
-
-			$playerStatsCrawler = $this->render($statsUrl ."?se=" . $this->current_season);
+			$fetchUrl = $statsUrl ."?se=" . $this->current_season;
+			$playerStatsCrawler = $this->render($fetchUrl);
 			$item['image_url'] = "https:" . $playerStatsCrawler->find('section.playerHero', 0)->find('img[data-script=pl_player-image]', 0)->src;
 		    $stats = [
 				'appearances' =>  ($playerStatsCrawler->find('span[data-stat=appearances]', 0)) ? trim($playerStatsCrawler->find('span[data-stat=appearances]', 0)->plaintext) : 0,
