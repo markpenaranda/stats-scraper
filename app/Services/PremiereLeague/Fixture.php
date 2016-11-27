@@ -55,6 +55,7 @@ class Fixture extends BaseService{
 	public $renderedMatch;
 
 	public function init($match_url) {
+		dump($match_url);
 		$this->renderedMatch = $this->render($match_url, true);
 	}
 
