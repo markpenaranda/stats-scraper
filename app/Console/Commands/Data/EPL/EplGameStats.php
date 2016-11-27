@@ -52,7 +52,7 @@ class EplGameStats extends Command
         $startDate = strtotime(date("Y-m-d") . " -1 days") * 1000;
         $endDate = strtotime(date("Y-m-d") . " +1 days") * 1000;
 
-        $matches = Match::where('schedule', '>', $startDate)->where('schedule', '<',  $endDate)->where('league', 'epl')->get();
+        $matches = Match::where('schedule', '>', $startDate)->where('schedule', '<',  $endDate)->where('status', '!=', "Final")->where('league', 'epl')->get();
 
         foreach ($matches as $match) {
             $match->status = "Live";
