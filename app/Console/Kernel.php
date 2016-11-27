@@ -37,7 +37,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('nba:rosters')->daily();
         $schedule->command('nba:games')->daily();
         $schedule->command('nba:game_stats')->everyMinute();
-        $schedule->command('epl:game_stats')->everyMinute();
+        // $schedule->command('epl:game_stats')->everyMinute();
     }
 
     /**
