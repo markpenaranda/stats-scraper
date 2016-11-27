@@ -79,7 +79,7 @@ class Fixture extends BaseService{
 	public function getScore() {
 		$match = $this->renderedMatch;
 
-		$score = $match->find('div.matchScoreContainer', 0)->find('div.fullTime', 0)->plaintext;
+		$score = $match->find('div.matchScoreContainer', 0)->find('div.score', 0)->plaintext;
 	
 		$arrayScore = explode("-", $score);
 
