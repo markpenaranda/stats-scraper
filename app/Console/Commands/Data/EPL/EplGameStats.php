@@ -44,17 +44,29 @@ class EplGameStats extends Command
      */
     public function handle()
     {
-    	$eplPlayer = new EplPlayer();
 
-        $startDate = strtotime(date("Y-m-d H:i:s")) * 1000;
+      $eplFixture = new Fixture();
+      $eplPlayer = new EplPlayer();
+      
+
+        $startDate = strtotime(date("Y-m-d") . " -1 days") * 1000;
         $endDate = strtotime(date("Y-m-d") . " +1 days") * 1000;
 
         $matches = Match::where('schedule', '>', $startDate)->where('schedule', '<',  $endDate)->where('league', 'epl')->get();
 
         foreach ($matches as $match) {
             $match->status = "Live";
-            $match->save();
+            $eplFixture->init($match->match_url);
+            // Get Match Status 
+            if($eplFixture->checkIfFinal()) {
+              $match->status = "Final";
+            }
+
+
+            $scores = $eplFixture->getScore();
+
           	foreach ($match->teams as $team) {
+
           		foreach ($team->roster as $player) {
           			$playerMatchStats = PlayerMatchStats::firstOrNew(['match_id' => $match->id, 'player_id' => $player->id]);
           			$stats = $eplPlayer->careerStats($player->url, $player->position);
@@ -78,7 +90,13 @@ class EplGameStats extends Command
           			$playerMatchStats->stats = json_encode($gameStats);
           			$playerMatchStats->save();
           		}
-          	}
+            $match->teams()->updateExistingPivot($team->id, ['score' => $scores[$team->pivot->remarks]]);
+
+          }
+
+          
+
+          $match->save();
            
         }
 

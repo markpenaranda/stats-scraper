@@ -52,4 +52,40 @@ class Fixture extends BaseService{
 		return $matches;
 	}
 
+	public $renderedMatch;
+
+	public function init($match_url) {
+		$this->renderedMatch = $this->render($match_url, true);
+	}
+
+	public function checkIfFinal()
+	{
+		$match = $this->renderedMatch;
+
+		$lastComment = $match->find('ul.commentaryContainer', 0)->find('li',0)->find('h6',0)->plaintext;
+		
+		$lastComment = trim($lastComment);
+		if ($lastComment == "Full Time!") {
+			return true;
+		}
+
+		return false;
+
+
+	}
+
+
+	public function getScore() {
+		$match = $this->renderedMatch;
+
+		$score = $match->find('div.matchScoreContainer', 0)->find('div.fullTime', 0)->plaintext;
+	
+		$arrayScore = explode("-", $score);
+
+		return array(
+				'home' => trim($arrayScore[0]),
+				'away' => trim($arrayScore[1])
+			);	
+	}
+
 }
