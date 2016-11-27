@@ -7,7 +7,7 @@ use Htmldom;
 
 class BaseService {
 
-	public $timeout = 0; // 20 seconds
+	public $timeout = 5000; // 20 seconds
 	public function render($url, $isLazy = false) 
 	{
 		$url = htmlspecialchars($url);
