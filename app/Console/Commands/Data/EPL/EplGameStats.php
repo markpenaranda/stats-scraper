@@ -21,7 +21,6 @@ class EplGameStats extends Command
      * The console command description.
      *
      * @var string
-     n
      */
     protected $description = 'Cron EPL Game Stats';
 
@@ -47,7 +46,7 @@ class EplGameStats extends Command
 
       $eplFixture = new Fixture();
       $eplPlayer = new EplPlayer();
-      
+
 
         $startDate = strtotime(date("Y-m-d") . " -1 days") * 1000;
         $endDate = strtotime(date("Y-m-d") . " +1 days") * 1000;
@@ -57,7 +56,7 @@ class EplGameStats extends Command
         foreach ($matches as $match) {
             $match->status = "Live";
             $eplFixture->init($match->match_url);
-            // Get Match Status 
+            // Get Match Status
             if($eplFixture->checkIfFinal()) {
               $match->status = "Final";
             }
@@ -72,8 +71,7 @@ class EplGameStats extends Command
           			$stats = $eplPlayer->careerStats($player->url, $player->position);
 
           			if($player->season_stats) {
-                  dump("PLayer: ". $player->id);
-                  // dd($player->season_stats->total_stats);
+                  
           				$currentStats = $player->season_stats->total_stats;
 
 
@@ -94,10 +92,10 @@ class EplGameStats extends Command
 
           }
 
-          
+
 
           $match->save();
-           
+
         }
 
     }
