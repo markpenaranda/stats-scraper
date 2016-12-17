@@ -8,9 +8,9 @@ use App\Http\Requests;
 use App\Team;
 class TeamController extends Controller
 {
-    
 
-    public function index(Request $request) 
+
+    public function index(Request $request)
     {
         $league = $request->input('league');
     	$teams = Team::where('league', $league)->get();
@@ -19,7 +19,7 @@ class TeamController extends Controller
 
     }
 
-    public function show(Request $request, $league, $id) 
+    public function show(Request $request, $league, $id)
     {
     	$team = Team::find($id);
 
@@ -27,7 +27,7 @@ class TeamController extends Controller
 
     }
 
-    public function showRoster(Request $request, $id) 
+    public function showRoster(Request $request, $id)
     {
     	$team = Team::find($id);
     	$item = [

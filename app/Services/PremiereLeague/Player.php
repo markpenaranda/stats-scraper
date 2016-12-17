@@ -1,21 +1,22 @@
-<?php 
+<?php
 
 namespace App\Services\PremiereLeague;
 
 use App\Team as DBTeam;
 
-class Player extends BaseService {
-	
+class Player extends BaseService
+{
+
 	public $current_season = "54";
 
-	public function careerStats($playerUrl, $position) 
+	public function careerStats($playerUrl, $position)
 	{
 
 		$statsUrl = str_replace("overview", "stats", $playerUrl);
 
 
 			$arrayUrl = explode("/", $statsUrl);
-			
+
 			$urlEncodedName = urlencode($arrayUrl[5]);
 
 			$statsUrl = str_replace($arrayUrl[5], $urlEncodedName, $statsUrl);
@@ -44,7 +45,7 @@ class Player extends BaseService {
 				'win' =>  ($playerStatsCrawler->find('span[data-stat=wins]', 0) && $position == "Goalkeeper") ? trim($playerStatsCrawler->find('span[data-stat=wins]', 0)->plaintext) : 0, // GK
 				'penalty_kick_save' =>  ($playerStatsCrawler->find('span[data-stat=penalty_save]', 0) && $position == "Goalkeeper") ? trim($playerStatsCrawler->find('span[data-stat=penalty_save]', 0)->plaintext) : 0 // GK
 			];
-				
+
 			return $stats;
 
 	}

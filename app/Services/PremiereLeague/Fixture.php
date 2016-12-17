@@ -54,7 +54,8 @@ class Fixture extends BaseService{
 
 	public $renderedMatch;
 
-	public function init($match_url) {
+	public function init($match_url)
+	{
 		dump($match_url);
 		$this->renderedMatch = $this->render($match_url, true);
 	}
@@ -71,7 +72,7 @@ class Fixture extends BaseService{
 		if($lastComment) {
 			$lastComment = $lastComment->find('h6',0)->plaintext;
 		}
-		
+
 		$lastComment = trim($lastComment);
 		if ($lastComment == "Full Time!") {
 			return true;

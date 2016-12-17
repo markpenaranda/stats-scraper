@@ -1,13 +1,15 @@
-<?php 
+<?php
 
 namespace App\Services\PremiereLeague;
 
 use App\Team as DBTeam;
 
-class Team extends BaseService{
+class Team extends BaseService
+{
 
 	public $current_season = "54";
-	public function all() 
+	
+	public function all()
 	{
 		$clubList = [];
 		$crawler = $this->render("https://www.premierleague.com/clubs");
@@ -70,13 +72,13 @@ class Team extends BaseService{
 			$statsUrl = str_replace("overview", "stats", $item['url']);
 
 			$arrayUrl = explode("/", $statsUrl);
-			
+
 			$urlEncodedName = urlencode($arrayUrl[5]);
 
 			$statsUrl = str_replace($arrayUrl[5], $urlEncodedName, $statsUrl);
 
 			$playerStatsCrawler = $this->render($statsUrl . "?se=" . $this->current_season);
-			
+
 			$item['image_url'] = trim("https:" . $player->find('.statCardImg', 0)->src);
 
 			$stats = [
@@ -100,13 +102,13 @@ class Team extends BaseService{
 				'win' => ($playerStatsCrawler->find('span[data-stat=wins]', 0) && $item['position'] == "Goalkeeper") ? trim($playerStatsCrawler->find('span[data-stat=wins]', 0)->plaintext) : 0, // GK
 				'penalty_kick_save' => ($playerStatsCrawler->find('span[data-stat=penalty_save]', 0) && $item['position'] == "Goalkeeper") ? trim($playerStatsCrawler->find('span[data-stat=penalty_save]', 0)->plaintext) : 0 // GK
 			];
-				
+
 			$item['career_stats'] = $stats;
 			array_push($roster, $item);
-			
+
 			$handler->advanceBar();
 
-		
+
 
 		}
 
@@ -114,6 +116,6 @@ class Team extends BaseService{
 
 		return $roster;
 
-	}	
+	}
 
 }
