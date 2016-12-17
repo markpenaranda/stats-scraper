@@ -11,8 +11,7 @@
         "jonnyw/php-phantomjs":"4.*",
          "yangqi/htmldom": "dev-master",
         "doctrine/dbal": "^2.5",
-        "aws/aws-sdk-php": "~2.4",
-        "aws/aws-sdk-php-laravel": "~2.0"
+        "aws/aws-sdk-php": "~3.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
