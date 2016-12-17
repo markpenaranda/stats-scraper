@@ -20,10 +20,16 @@ return [
     ],
 
     'ses' => [
-        'key' => env('SES_KEY'),
-        'secret' => env('SES_SECRET'),
-        'region' => 'us-east-1',
-    ],
+  		'key' => 'AKIAI5F5QTEETGTD7FJQ',
+  		'secret' => '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',
+  		'region' => 'us-east-1',
+  		'version'  => 'latest',
+  		'credentials' => [
+  			'key' => 'AKIAI5F5QTEETGTD7FJQ',
+  			'secret' => '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'
+  		],
+  		'enable_verify_peer' => false
+  	],
 
     'sparkpost' => [
         'secret' => env('SPARKPOST_SECRET'),
