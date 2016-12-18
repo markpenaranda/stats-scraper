@@ -8,7 +8,7 @@ class Team extends BaseService
 {
 
 	public $current_season = "54";
-	
+
 	public function all()
 	{
 		$clubList = [];
@@ -103,7 +103,7 @@ class Team extends BaseService
 				'penalty_kick_save' => ($playerStatsCrawler->find('span[data-stat=penalty_save]', 0) && $item['position'] == "Goalkeeper") ? trim($playerStatsCrawler->find('span[data-stat=penalty_save]', 0)->plaintext) : 0 // GK
 			];
 
-			$item['career_stats'] = $stats;
+			$item['season_stats'] = $stats;
 			array_push($roster, $item);
 
 			$handler->advanceBar();
