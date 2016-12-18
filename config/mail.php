@@ -55,10 +55,7 @@ return [
     |
     */
 
-    'from' => [
-        'address' => 'hello@example.com',
-        'name' => 'Example',
-    ],
+    'from' => ['address' => 'support@drafthoops.com', 'name' => 'Drafthoops Customer Support'],
 
     /*
     |--------------------------------------------------------------------------
