@@ -35,7 +35,7 @@ class EplRoster extends Command
         parent::__construct();
     }
 
-    public function createBar($count) 
+    public function createBar($count)
     {
         $this->bar = $this->output->createProgressBar($count);
     }
@@ -64,7 +64,9 @@ class EplRoster extends Command
             $roster = $data->getRoster($team, $this);
 
             foreach ($roster as $item) {
-               
+                if($this->checkIfFail($item)) {
+                  continue;
+                }
                 $player = Player::firstOrNew([
                     'name' => $item['name'],
                     'jersey_number' => $item['jersey_number'],
@@ -93,5 +95,22 @@ class EplRoster extends Command
         }
 
         $this->info('Done');
+    }
+
+    private function checkIfFail ($player)
+    {
+      $pl = Player::where('name', $player['name'])
+                  ->where('url', $player['url'])
+                  ->where('country', $player['country'])
+                  ->first();
+
+      $currentStats = CareerStats::where('player_id', $pl->id)->first();
+      if(!$stats) { return false; }
+      $newStats = $player['season_stats'];
+      foreach ($currentStats->total_stats as $key => $value) {
+        if($value > $newStats[$key]) { return true; }
+      }
+
+      return false;
     }
 }
