@@ -86,15 +86,25 @@ class Fixture extends BaseService{
 
 	public function getScore() {
 		$match = $this->renderedMatch;
+		$score = $match->find('div.matchScoreContainer', 0);
+		if($score) {
+			$score = $score->find('div.score', 0);
+			if($score) {
+				$score = $score->plaintext;
+				$arrayScore = explode("-", $score);
 
-		$score = $match->find('div.matchScoreContainer', 0)->find('div.score', 0)->plaintext;
+				return array(
+						'home' => trim($arrayScore[0]),
+						'away' => trim($arrayScore[1])
+					);
+			}
+		}
 
-		$arrayScore = explode("-", $score);
-
-		return array(
-				'home' => trim($arrayScore[0]),
-				'away' => trim($arrayScore[1])
+		return array (
+				'home' => 0,
+				'away' => 0
 			);
+
 	}
 
 }
