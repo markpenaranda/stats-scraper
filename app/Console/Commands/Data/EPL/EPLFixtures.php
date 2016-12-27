@@ -20,7 +20,6 @@ class EplFixtures extends Command
      * The console command description.
      *
      * @var string
-     n
      */
     protected $description = 'Cron EPL Teams Roster';
 
@@ -36,7 +35,7 @@ class EplFixtures extends Command
 
 
 
-    public function createBar($count) 
+    public function createBar($count)
     {
         $this->bar = $this->output->createProgressBar($count);
     }
@@ -79,7 +78,7 @@ class EplFixtures extends Command
                 $team = Team::where('url', $value['url'])->first();
 
                 foreach ($match->teams as $added_team) {
-                    if($added_team == $team) { $team_not_exist = false; }
+                    if($added_team->id == $team->id) { $team_not_exist = false; }
                 }
                 if($team_not_exist) {
                     $match->teams()->attach($team, ['remarks' => $remarks   ]);
