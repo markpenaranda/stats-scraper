@@ -62,13 +62,21 @@ class EplFixtures extends Command
 
         $fixtures = $fixture->all($this);
 
-
         foreach ($fixtures as $item) {
-            dump($item);
+           
             $this->info("\n Saving in DB");
-            $match = Match::firstOrNew(['match_url' => $item['match_url']]);
-            $match->schedule = $item['schedule'];
-            $match->match_url = $item['match_url'];
+        
+            $this->saveMatch($item);
+            
+        }
+
+    }
+
+    private function saveMatch(array $matchArray) 
+    {
+            $match = Match::firstOrNew(['match_url' => $matchArray['match_url']]);
+            $match->schedule = $matchArray['schedule'];
+            $match->match_url = $matchArray['match_url'];
             $match->league = "epl";
             $match->status = "Upcoming";
             $match->save();
@@ -84,7 +92,5 @@ class EplFixtures extends Command
                     $match->teams()->attach($team, ['remarks' => $remarks   ]);
                 }
             }
-        }
-
     }
 }

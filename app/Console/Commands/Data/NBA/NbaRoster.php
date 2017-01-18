@@ -35,7 +35,7 @@ class NbaRoster extends Command
         parent::__construct();
     }
 
-    public function createBar($count) 
+    public function createBar($count)
     {
         $this->bar = $this->output->createProgressBar($count);
     }
@@ -64,11 +64,8 @@ class NbaRoster extends Command
             $roster = $data->getRoster($team, $this);
 
             foreach ($roster as $item) {
-               
+
                 $player = Player::firstOrNew([
-                    'name' => $item['name'],
-                    'jersey_number' => $item['jersey_number'],
-                    'country' => $item['country'],
                     'url' => $item['url']]);
                 $player->name = $item['name'];
                 $player->jersey_number = $item['jersey_number'];

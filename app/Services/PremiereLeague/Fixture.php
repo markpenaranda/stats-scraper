@@ -6,12 +6,12 @@ use App\Team as DBTeam;
 
 class Fixture extends BaseService{
 
-	public function all($handler)
+	public function all()
 	{
 		$matches = [];
 		while(count($matches) == 0) {
 			$fixtureCrawler = $this->render("https://www.premierleague.com/fixtures", true);
-			$handler->createBar(count($fixtureCrawler->find('li.matchFixtureContainer')));
+			// $handler->createBar(count($fixtureCrawler->find('li.matchFixtureContainer')));
 			foreach ($fixtureCrawler->find('li.matchFixtureContainer') as $matchContainer) {
 				$crawledMatchUrl = $matchContainer->find('a.fixture', 0)->href;
 
@@ -40,12 +40,12 @@ class Fixture extends BaseService{
 
 				array_push($matches, $match);
 
-				$handler->advanceBar();
-				break;
+				// $handler->advanceBar();
+				
 			}
 		}
 
-		$handler->finishBar();
+		// $handler->finishBar();
 
 
 

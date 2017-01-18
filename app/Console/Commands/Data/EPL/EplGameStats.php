@@ -53,6 +53,8 @@ class EplGameStats extends Command
 
         $matches = Match::where('schedule', '>', $startDate)->where('schedule', '<',  $endDate)->where('status', '!=', "Final")->where('league', 'epl')->get();
 
+        
+
         foreach ($matches as $match) {
             $match->status = "Live";
             $eplFixture->init($match->match_url);
