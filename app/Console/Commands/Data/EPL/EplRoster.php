@@ -100,7 +100,7 @@ class EplRoster extends Command
     private function checkIfFail ($player)
     {
       $pl = Player::where('url', $player['url'])->first();
-
+      if(!$pl) { return false; }
       $currentStats = CareerStats::where('player_id', $pl->id)->first();
       if(!$currentStats) { return false; }
       $newStats = $player['season_stats'];
