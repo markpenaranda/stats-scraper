@@ -81,7 +81,7 @@ class EplFixtures extends Command
             $match->status = "Upcoming";
             $match->save();
 
-            foreach($item['teams'] as $remarks => $value) {
+            foreach($matchArray['teams'] as $remarks => $value) {
                 $team_not_exist = true;
                 $team = Team::where('url', $value['url'])->first();
 
