@@ -20,7 +20,6 @@ class Fixture extends BaseService{
 
 				$matchInfoCrawler = $this->render($matchUrl, true);
 
-				dump($matchContainer->{'data-comp-match-item-ko'});
 
 				$scoreboxContainer = $matchInfoCrawler->find('div.scoreboxContainer', 0);
 
@@ -38,7 +37,10 @@ class Fixture extends BaseService{
 					]
 				];
 
-				array_push($matches, $match);
+				if(!in_array($match, $matches)) {
+					dump($match);
+					array_push($matches, $match);
+				}
 
 				// $handler->advanceBar();
 				
