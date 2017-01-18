@@ -36,7 +36,7 @@ class TeamController extends Controller
     		'id' => $team->id,
     		'league' => $team->league,
     		'abbreviation' => $team->abbreviation,
-    		'roster' => $team->roster->load('season_stats')
+    		'roster' => $team->roster->where('active', 1)->load('season_stats')
     	];
 
     	return response()->json($item);

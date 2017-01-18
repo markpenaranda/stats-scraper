@@ -61,6 +61,7 @@ class NbaRoster extends Command
         $teams = Team::where('league', 'nba')->get();
         foreach ($teams as $team) {
             $this->info("\n" . $team->name);
+            Player::where('team_id', '=', $team->id)->update(['active' => false]);
             $roster = $data->getRoster($team, $this);
 
             foreach ($roster as $item) {
@@ -73,6 +74,7 @@ class NbaRoster extends Command
                 $player->country = $item['country'];
                 $player->url = $item['url'];
                 $player->image_url = $item['image_url'];
+                $player->active = true;
                 $player->team_id = $team->id;
                 $player->save();
 

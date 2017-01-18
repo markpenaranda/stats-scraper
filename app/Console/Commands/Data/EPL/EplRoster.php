@@ -60,6 +60,7 @@ class EplRoster extends Command
         $data = new DataTeam;
         $teams = Team::where('league', 'epl')->get();
         foreach ($teams as $team) {
+            Player::where('team_id', '=', $team->id)->update(['active' => false]);
             $this->info("\n" . $team->name);
             $roster = $data->getRoster($team, $this);
 
@@ -67,10 +68,8 @@ class EplRoster extends Command
                 if($this->checkIfFail($item)) {
                   continue;
                 }
+
                 $player = Player::firstOrNew([
-                    'name' => $item['name'],
-                    'jersey_number' => $item['jersey_number'],
-                    'country' => $item['country'],
                     'url' => $item['url']]);
                 $player->name = $item['name'];
                 $player->jersey_number = $item['jersey_number'];
@@ -79,6 +78,7 @@ class EplRoster extends Command
                 $player->url = $item['url'];
                 $player->image_url = $item['image_url'];
                 $player->team_id = $team->id;
+                $player->active = true;
                 $player->save();
 
                 $career_stats = json_encode($item['season_stats']);
