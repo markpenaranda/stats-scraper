@@ -122,6 +122,8 @@ class NbaRoster extends Command
             'blk' => 0,
             'pf' => 0,
             'pts' => 0,
+            "double_double" => 0,
+            "triple_double"=> 0
         ];
 
         //"minutes":"19","fgm":"2","fga":"9","fgp":0.22222222222222,"3pm":"1","3pa":"4","3pp":0.25,"ftm":"2","fta":"4","ftp":1,"oreb":"1","dreb":"3","reb":"4","ast":"3","tov":"3","stl":"0","blk":"1","pf":"1","pts":"9"
