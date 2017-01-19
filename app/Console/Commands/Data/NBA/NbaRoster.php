@@ -87,7 +87,7 @@ class NbaRoster extends Command
                                                 'player_id' => $player->id
                                             ]);
                 $stats->player_id = $player->id;
-                $stats->total_stats = $this->computeTotalStats($player);
+                $stats->total_stats = json_encode($this->computeTotalStats($player));
                 $stats->save();
 
             }
