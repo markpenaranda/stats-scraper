@@ -68,6 +68,9 @@ class NbaRoster extends Command
 
                 $player = Player::firstOrNew([
                     'url' => $item['url']]);
+
+
+
                 $player->name = $item['name'];
                 $player->jersey_number = $item['jersey_number'];
                 $player->position = $item['position'];
@@ -78,10 +81,61 @@ class NbaRoster extends Command
                 $player->team_id = $team->id;
                 $player->save();
 
+
+                $stats = CareerStats::firstOrNew([
+                                                'player_id' => $player->id
+                                            ]);
+                $stats->player_id = $player->id;
+                $stats->total_stats = $this->computeTotalStats($player);
+                $stats->save();
+
             }
 
         }
 
         $this->info('Done');
+    }
+
+    private function computeTotalStats($player) 
+    {
+        $matchStats = $player->match_stats;
+
+        $totalStats = [
+            'appearances' => 0,
+            'minutes' => 0,
+            'fgm' => 0,
+            'fga' => 0,
+            'fgp' => 0,
+            '3pm' => 0,
+            '3pa' => 0,
+            '3pp' => 0,
+            'ftm' => 0,
+            'fta' => 0,
+            'ftp' => 0,
+            'oreb' => 0,
+            'dreb' => 0,
+            'reb' => 0,
+            'ast' => 0,
+            'tov' => 0,
+            'stl' => 0,
+            'blk' => 0,
+            'pf' => 0,
+            'pts' => 0,
+        ];
+
+        //"minutes":"19","fgm":"2","fga":"9","fgp":0.22222222222222,"3pm":"1","3pa":"4","3pp":0.25,"ftm":"2","fta":"4","ftp":1,"oreb":"1","dreb":"3","reb":"4","ast":"3","tov":"3","stl":"0","blk":"1","pf":"1","pts":"9"
+
+
+        foreach ($matchStats as $match) {
+            $statsPerGame = json_decode($match->stats);
+            foreach ($statsPerGame as $key => $value) {
+                if(array_key_exists($key, $totalStats)) {
+                    $totalStats[$key] += $value;
+                }
+            }
+            $totalStats['appearances'] += 1;
+        }
+
+        return $totalStats;
     }
 }

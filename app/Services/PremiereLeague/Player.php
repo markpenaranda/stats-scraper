@@ -50,4 +50,11 @@ class Player extends BaseService
 
 	}
 
+	public function match_stats()
+    {
+    	return $this->hasMany('App\PlayerMatchStats');
+    }
+
+
+
 }
