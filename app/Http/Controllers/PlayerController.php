@@ -20,6 +20,7 @@ class PlayerController extends Controller
     		'jersey_number' => $player->jersey_number,
     		'country' => $player->country,
     		'position' => $player->position,
+            'player_profile' => $player->url,
     		'season_stats' => $player->season_stats
     	];
 

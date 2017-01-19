@@ -70,20 +70,30 @@ class EplGameStats extends Command
 
           		foreach ($team->roster as $player) {
           			$playerMatchStats = PlayerMatchStats::firstOrNew(['match_id' => $match->id, 'player_id' => $player->id]);
-          			$stats = $eplPlayer->careerStats($player->url, $player->position);
+          			
+                $fail = false;
+                  do {
+                    $stats = $eplPlayer->careerStats($player->url, $player->position);
 
-          			if($player->season_stats) {
-                  
-          				$currentStats = $player->season_stats->total_stats;
+              			if($player->season_stats) {
+                      
+              				$currentStats = $player->season_stats->total_stats;
 
 
-          				$gameStats = array();
+              				$gameStats = array();
 
-          				foreach ($currentStats as $key => $value) {
-                    dump($stats[$key] . " - " . $value);
-          					$gameStats[$key] = (int) $stats[$key] - (int) $value;
-          				}
-          			}
+              				foreach ($currentStats as $key => $value) {
+                        dump($stats[$key] . " - " . $value);
+                        //check here if fail
+                        $currentValue = (int) $value;
+                        $newValue     = (int) $stats[$key];
+                        if($newValue < $currentValue) { $fail = true; }
+                        $gameStats[$key] = (int) $stats[$key] - (int) $value;
+
+              				}
+
+                    }
+                } while($fail);
 
           			$playerMatchStats->match_id = $match->id;
           			$playerMatchStats->player_id = $player->id;
