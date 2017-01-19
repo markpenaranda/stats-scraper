@@ -128,7 +128,7 @@ class NbaRoster extends Command
 
 
         foreach ($matchStats as $match) {
-            $statsPerGame = json_decode($match->stats);
+            $statsPerGame = $match->stats;
             foreach ($statsPerGame as $key => $value) {
                 if(array_key_exists($key, $totalStats)) {
                     $totalStats[$key] += $value;
