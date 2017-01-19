@@ -6,6 +6,7 @@ use Illuminate\Console\Command;
 use App\Services\ESPN\NBA\Team as DataTeam;
 use App\Team;
 use App\Player;
+use App\PlayerMatchStats;
 use App\CareerStats;
 class NbaRoster extends Command
 {
@@ -98,7 +99,7 @@ class NbaRoster extends Command
 
     private function computeTotalStats($player) 
     {
-        $matchStats = $player->match_stats;
+        $matchStats = PlayerMatchStats::where('player_id', $player->id)->get();
 
         $totalStats = [
             'appearances' => 0,
