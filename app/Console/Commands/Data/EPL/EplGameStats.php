@@ -75,6 +75,7 @@ class EplGameStats extends Command
           			$playerMatchStats = PlayerMatchStats::firstOrNew(['match_id' => $match->id, 'player_id' => $player->id]);
           			
                 $fail = false;
+                $failCounter = 0;
                   do {
                     $stats = $eplPlayer->careerStats($player->url, $player->position);
 
@@ -90,13 +91,13 @@ class EplGameStats extends Command
                         //check here if fail
                         $currentValue = (int) $value;
                         $newValue     = (int) $stats[$key];
-                        if($newValue < $currentValue) { $fail = true; }
+                        if($newValue < $currentValue) { $fail = true; $failCounter++; }
                         $gameStats[$key] = (int) $stats[$key] - (int) $value;
 
               				}
 
                     }
-                } while($fail);
+                } while($fail && $failCounter < 5);
 
           			$playerMatchStats->match_id = $match->id;
           			$playerMatchStats->player_id = $player->id;

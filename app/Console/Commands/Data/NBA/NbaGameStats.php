@@ -49,7 +49,7 @@ class NbaGameStats extends Command
         $startDate = strtotime(date("Y-m-d") . " -5 days") * 1000;
         $endDate = strtotime(date("Y-m-d") . " +1 days") * 1000;
 
-        $matches = Match::where('schedule', '>', $startDate)->where('schedule', '<',  $endDate)->where('league', 'nba')->where('status', 'Upcoming')->get();
+        $matches = Match::where('schedule', '<',  $endDate)->where('league', 'nba')->where('status', 'Upcoming')->get();
 
         foreach ($matches as $match) {
             dump($match->match_url);
