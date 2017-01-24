@@ -51,6 +51,9 @@ class EplGameStats extends Command
         $startDate = strtotime(date("Y-m-d") . " -1 days") * 1000;
         $endDate = strtotime(date("Y-m-d") . " +1 days") * 1000;
 
+        $this->info($startDate);
+        $this->info($endDate);
+        
         $matches = Match::where('schedule', '>', $startDate)->where('schedule', '<',  $endDate)->where('status', '!=', "Final")->where('league', 'epl')->get();
 
         
