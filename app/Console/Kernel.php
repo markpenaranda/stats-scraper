@@ -13,15 +13,22 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        // EPL
         'App\Console\Commands\Data\EPL\EplTeams',
         'App\Console\Commands\Data\EPL\EplRoster',
         'App\Console\Commands\Data\EPL\EplFixtures',
         'App\Console\Commands\Data\EPL\EplGameStats',
+        // NBA
         'App\Console\Commands\Data\NBA\NbaTeams',
         'App\Console\Commands\Data\NBA\NbaRoster',
         'App\Console\Commands\Data\NBA\NbaMatches',
         'App\Console\Commands\Data\NBA\NbaGameStats',
+        // CBA
+        'App\Console\Commands\Data\CBA\CbaTeams',
+        'App\Console\Commands\Data\CBA\CbaRoster',
+        // 'App\Console\Commands\Data\CBA\CbaFixtures',
+        // 'App\Console\Commands\Data\CBA\CbaGameStats',
+
     ];
 
     /**
