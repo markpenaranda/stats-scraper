@@ -26,7 +26,7 @@ class Kernel extends ConsoleKernel
         // CBA
         'App\Console\Commands\Data\CBA\CbaTeams',
         'App\Console\Commands\Data\CBA\CbaRoster',
-        // 'App\Console\Commands\Data\CBA\CbaFixtures',
+        'App\Console\Commands\Data\CBA\CbaMatches',
         // 'App\Console\Commands\Data\CBA\CbaGameStats',
 
     ];
